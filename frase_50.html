@@ -1,0 +1,142 @@
+<h1 style="font-size: 18px;">
+<script>
+	var frase = [];
+	var size;
+	var v1 = [];
+	var v2 = [];
+	var v3 = [];
+	var matriz = [];
+	//var zig = [];
+	var i, j;
+	var startIndex;
+	//var alternada = [];
+	var matrizFrase = [];
+
+	function solicitaFrase() {
+		do {
+			frase = prompt("Insira uma frase pelo menos 50 caracteres:");
+			size = frase.length;
+		} while (size <= 50) //	(size < 50)
+	}
+
+	function separaFrase() {
+		v1 = frase.split(" ");
+		return v1;
+	}
+
+	function maiuscFrase() {
+		v2 = frase.toUpperCase();
+	}
+
+	function invertFrase() {
+		var splitString = frase.split("");
+
+		var reverseArray = splitString.reverse();
+
+		v3 = reverseArray.join("");
+	}
+
+
+	solicitaFrase();
+	v1 = separaFrase();
+	maiuscFrase();
+	invertFrase();
+	mostraLol();
+	//alternarMaiusculaMinuscula();
+
+
+	function mostraLol() {
+		document.write(frase);
+		document.write("<br>Vetor 1 (Separação): ", v1, "<br>");// pra ser um específico é so usar v1[x]
+		document.write("Vetor 2 (Maiúsculo): ", v2, "<br>");
+		document.write("Vetor 3 (Inversão): ", v3, "<br>");
+		mostraMatriz();
+		palindromo();
+		vogais();
+		conso();
+		espacos();
+	}
+
+	//zig = frase;
+	/*														 //com erro
+		function alternarMaiusculaMinuscula() {
+			alternada = "";
+			for (i = 0; i < zig.length; i++) {
+				if (i % 2 === 0) {
+					alternada += zig[i].toUpperCase();
+				} else {
+					alternada += zig[i].toLowerCase();
+				}
+			}
+		}		*/
+
+	function mostraMatriz() {
+		matrizFrase = [];
+		for (i = 0; i < 10; i++) {
+			matrizFrase[i] = [];
+			for (j = 0; j < 5; j++) {
+				startIndex = i * 5 + j;
+				matrizFrase[i][j] = frase[startIndex];
+			}
+		}
+
+		document.write("Matriz 10x5: <br>");
+		for (i = 0; i < matrizFrase.length; i++) {
+			document.write(matrizFrase[i].join(" "), "<br> ");
+		}
+	}
+
+
+	function vogais() {
+		var vogais = frase.match(/[aeiou]/gi);
+
+		if (vogais) {
+			document.write("<br>Vogais encontradas: <br>" + vogais.join(" "));
+		} else {
+			document.write("<br>Nenhuma vogal encontrada. <br>");
+		}
+	}
+
+	function conso() {
+		var consoantes = frase.match(/[bcdfghjklmnpqrstvwxyz]/gi);
+
+		if (consoantes) {
+			document.write("<br>Consoantes encontradas: <br>" + consoantes.join(" "));
+		} else {
+			document.write("<br>Nenhuma consoante encontrada. <br>");
+		}
+	}
+
+	function espacos() {
+		var spaces = [];
+		let x = 0;
+
+		for (i = 0; i < frase.length; i++) {
+			if (frase[i].includes(" ")) {
+				spaces.push(i);
+				x += 1;
+			}
+		}
+
+		if (x > 0) {
+			document.write("<br>Espaços: <br>" + x);
+		} else {
+			document.write("<br>Nenhum espaço encontrado. <br>");
+		}
+	}
+
+	function palindromo() {
+		
+		var fermentado = frase.toLowerCase().replace(/\s/g, '');
+
+		var rever = fermentado.split('').reverse().join('');
+
+		if (rever === fermentado) {
+			document.write("<br>Palindromos encontrados: <br>" + rever);
+		} else {
+			document.write("<br>Nenhum palindromo encontrado. <br>");
+		}
+	}
+
+</script>
+</h1>
